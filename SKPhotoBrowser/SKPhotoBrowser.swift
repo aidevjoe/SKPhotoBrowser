@@ -17,6 +17,10 @@ open class SKPhotoBrowser: UIViewController {
     open var initPageIndex: Int = 0
     open var activityItemProvider: UIActivityItemProvider?
     open var photos: [SKPhotoProtocol] = []
+
+    public var toolActionButton: UIBarButtonItem {
+        return toolbar.toolActionButton
+    }
     
     internal lazy var pagingScrollView: SKPagingScrollView = SKPagingScrollView(frame: self.view.frame, browser: self)
     
@@ -240,7 +244,7 @@ open class SKPhotoBrowser: UIViewController {
         }
         
         if let activityItemProvider = activityItemProvider {
-            activityItems.append(activityItemProvider)
+            activityItems.append(activityItemProvider.item as AnyObject)
         }
         
         activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
